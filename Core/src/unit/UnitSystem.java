@@ -11,4 +11,5 @@ public abstract class UnitSystem
 	}
 
 	public abstract Unit getUnit(Dimension dim);
+	public abstract Unit rename(Unit u);
 }
