@@ -7,6 +7,7 @@ public class NullDimension extends Dimension
 {
 	public static final NullDimension INSTANCE = new NullDimension();
 
+	private NullDimension(){}
 	@Override
 	public String getName()
 	{
