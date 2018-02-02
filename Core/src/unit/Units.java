@@ -16,10 +16,16 @@ public class Units {
 	{
 
 	}
-	protected static Unit makeUnit(Map<Unit,Integer> units)
+	static Unit makeUnit(Map<Unit,Integer> units)
 	{
 		Set<Map.Entry<Unit,Integer>> entries=units.entrySet();
 		if(entries.size()==1)
-
+			for(Map.Entry<Unit,Integer> entry:entries) {
+				if (entry.getValue() == 1)
+					return entry.getKey();
+				if(entry.getValue() == 0)
+					return NullUnit.INSTANCE;
+			}
+		return new CompoundUnit(units);
 	}
 }
