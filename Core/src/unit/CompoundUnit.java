@@ -25,15 +25,14 @@ public class CompoundUnit extends Unit
 		{
 			if (entry.getValue() > 0)
 				for (int i = 0; i < entry.getValue(); i++)
-					tempDim = Dimension.multiply(tempDim, entry.getKey().getDimension());
+					tempDim = Dimensions.multiply(tempDim, entry.getKey().getDimension());
 			else
 				for (int i = 0; i > entry.getValue(); i--)
-					tempDim = Dimension.divide(tempDim, entry.getKey().getDimension());
+					tempDim = Dimensions.divide(tempDim, entry.getKey().getDimension());
 			tempSiValue *= Math.pow(entry.getKey().asSi(), entry.getValue());
 		}
 		this.dimension = tempDim;
 		this.siValue = tempSiValue;
-
 	}
 
 	public CompoundUnit(Map<Unit, Integer> units)
