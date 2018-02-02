@@ -100,8 +100,8 @@ public class Dimensions
 			for (Map.Entry<BaseDimension, Integer> entry : entries)
 				if (entry.getValue() == 1)
 					return entry.getKey();
-				else if (entries.size() == 0)
-					return new NullDimension();
+		if (entries.size() == 0)
+			return new NullDimension();
 		return new CompoundDimension(dims);
 	}
 
