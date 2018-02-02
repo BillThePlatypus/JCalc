@@ -17,6 +17,8 @@ public class SiSystem extends UnitSystem
 	public static final CompoundUnit HERTZ;
 	public static final CompoundUnit NEWTON;
 
+	public static final SiSystem INSTANCE=new SiSystem();
+
 	static{
 		TreeMap<Unit,Integer> tempMap=new TreeMap<>();
 		tempMap.put(SECOND,-1);
@@ -38,7 +40,7 @@ public class SiSystem extends UnitSystem
 		COULOMB =new CompoundUnit(tempMap);
 	}
 
-
+	private SiSystem(){}s
 	@Override
 	public String getName()
 	{
