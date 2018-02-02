@@ -59,7 +59,7 @@ public class BaseUnit extends Unit
 	}
 
 	@Override
-	public Map<BaseUnit, Integer> asBaseUnits()
+	public Map<BaseUnit, Integer> getSubUnits()
 	{
 		Map<BaseUnit, Integer> ret = new TreeMap<>();
 		ret.put(this, 1);

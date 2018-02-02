@@ -29,10 +29,10 @@ public abstract class Dimension implements Comparable<Dimension>
 	@Override
 	public boolean equals(Object o)
 	{
-		if (o instanceof Dimension)
+		if (this.getClass().equals(o.getClass()))
 		{
 			Dimension other = (Dimension) o;
-			return this.getTypes().equals(other.getTypes());
+			return this.getName().equals(other.getName()) && this.getTypes().equals(other.getTypes());
 		}
 		return false;
 	}
@@ -43,6 +43,16 @@ public abstract class Dimension implements Comparable<Dimension>
 		for (BaseDimension dim : dims.keySet())
 			dims.put(dim, -dims.get(dim));
 		return Dimensions.makeDimension(dims);
+	}
+
+	//Is this perhaps too slow?
+	//Not if getTypes is O(1)
+	@Override
+	public int hashCode()
+	{
+		int hash=this.getName().hashCode();
+		hash|=this.getTypes().hashCode();
+		return hash;
 	}
 
 

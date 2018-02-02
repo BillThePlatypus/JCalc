@@ -94,7 +94,7 @@ public class CompoundUnit extends Unit
 	}
 
 	@Override
-	public Map<BaseUnit, Integer> asBaseUnits()
+	public Map<BaseUnit, Integer> getSubUnits()
 	{
 		return null;
 	}

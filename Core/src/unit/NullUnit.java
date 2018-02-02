@@ -41,7 +41,7 @@ public class NullUnit extends Unit{
 	}
 
 	@Override
-	public Map<BaseUnit, Integer> asBaseUnits() {
+	public Map<BaseUnit, Integer> getSubUnits() {
 		return new TreeMap<>();
 	}
 }

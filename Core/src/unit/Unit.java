@@ -27,7 +27,7 @@ public abstract class Unit implements Comparable<Unit>
 
 	public abstract void addSystem(UnitSystem system);
 
-	public abstract Map<BaseUnit, Integer> asBaseUnits();
+	public abstract Map<Unit, Integer> getSubUnits();
 
 	@Override
 	public int compareTo(Unit u)
@@ -45,5 +45,17 @@ public abstract class Unit implements Comparable<Unit>
 		hash|=Double.hashCode(this.asSi());
 		hash|=this.getSymbol().hashCode();
 		return hash;
+	}
+	//This should work without overriding for subclasses as well, unless they do something goofy/fancy
+	@Override
+	public boolean equals(Object o)
+	{
+		if(!o.getClass().equals(this.getClass()))
+			return false;
+		Unit u=(Unit)o;
+		return this.asSi()==u.asSi()
+				&& this.getFullName().equals(u.getFullName())
+				&& this.getSymbol().equals(u.getSymbol())
+				&& this.getDimension().equals(u.getDimension());
 	}
 }
