@@ -1,5 +1,7 @@
 package number;
 
+import unit.Unit;
+
 public class Number
 {
 	private final Unit unit;
