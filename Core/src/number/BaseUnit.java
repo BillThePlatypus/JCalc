@@ -7,13 +7,13 @@ import java.util.TreeMap;
 
 public class BaseUnit extends Unit
 {
-	private final BaseDimension dimension;
+	private final Dimension dimension;
 	private final String name;
 	private final String symbol;
 	private final double si;
 	private final List<UnitSystem> prefferedSystems = new ArrayList<>();
 
-	public BaseUnit(BaseDimension dimension, double si, String name, String symbol)
+	public BaseUnit(Dimension dimension, double si, String name, String symbol)
 	{
 		this.dimension = dimension;
 		this.name = name;
