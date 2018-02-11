@@ -51,7 +51,9 @@ public abstract class Dimension implements Comparable<Dimension>
 	public int hashCode()
 	{
 		int hash=this.getName().hashCode();
-		hash|=this.getTypes().hashCode();
+		Map<BaseDimension,Integer> types=this.getTypes();
+		if(types.size()>1)
+			hash|=this.getTypes().hashCode();
 		return hash;
 	}
 
