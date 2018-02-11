@@ -101,7 +101,7 @@ public class Dimensions
 				if (entry.getValue() == 1)
 					return entry.getKey();
 		if (entries.size() == 0)
-			return new NullDimension();
+			return NullDimension.INSTANCE;
 		return new CompoundDimension(dims);
 	}
 
@@ -125,9 +125,9 @@ public class Dimensions
 
 	public static Dimension divide(Dimension dim1, Dimension dim2)
 	{
-		System.out.println(dim1);
-		System.out.println(dim2);
-		System.out.println(dim2.invert());
+		//System.out.println(dim1);
+		//System.out.println(dim2);
+		//System.out.println(dim2.invert());
 		return Dimensions.multiply(dim1, dim2.invert());
 	}
 }

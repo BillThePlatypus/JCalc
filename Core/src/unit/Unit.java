@@ -44,6 +44,7 @@ public abstract class Unit implements Comparable<Unit>
 		hash|=this.getDimension().hashCode();
 		hash|=Double.hashCode(this.asSi());
 		hash|=this.getSymbol().hashCode();
+		hash|=this.getClass().getName().hashCode();
 		return hash;
 	}
 	//This should work without overriding for subclasses as well, unless they do something goofy/fancy
@@ -57,5 +58,10 @@ public abstract class Unit implements Comparable<Unit>
 				&& this.getFullName().equals(u.getFullName())
 				&& this.getSymbol().equals(u.getSymbol())
 				&& this.getDimension().equals(u.getDimension());
+	}
+	@Override
+	public String toString()
+	{
+		return this.getFullName()+" ("+this.getClass().getName()+")";
 	}
 }

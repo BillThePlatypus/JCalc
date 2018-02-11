@@ -46,8 +46,8 @@ class DimensionTest
 		assertFalse(Dimensions.ENERGY.equals(Dimensions.CURRENT));
 
 		//Testing NullDimensions
-		NullDimension nullD = new NullDimension();
-		assertTrue(nullD.equals(new NullDimension()));
+		NullDimension nullD = NullDimension.INSTANCE;
+		assertTrue(nullD.equals(NullDimension.INSTANCE));
 		assertTrue(nullD.equals(nullD));
 
 		assertFalse(nullD.equals(Dimensions.CURRENT));
@@ -68,17 +68,17 @@ class DimensionTest
 	{
 		Dimension inverseTime = Dimensions.TIME.invert();
 
-		assertEquals(Dimensions.SPEED, Dimension.multiply(inverseTime, Dimensions.LENGTH));
-		assertEquals(Dimensions.SPEED, Dimension.multiply(Dimensions.LENGTH, inverseTime));
+		assertEquals(Dimensions.SPEED, Dimensions.multiply(inverseTime, Dimensions.LENGTH));
+		assertEquals(Dimensions.SPEED, Dimensions.multiply(Dimensions.LENGTH, inverseTime));
 
-		assertEquals(Dimensions.ACCELERATION, Dimension.multiply(Dimensions.SPEED, inverseTime));
-		assertEquals(Dimensions.ACCELERATION, Dimension.multiply(inverseTime, Dimensions.SPEED));
+		assertEquals(Dimensions.ACCELERATION, Dimensions.multiply(Dimensions.SPEED, inverseTime));
+		assertEquals(Dimensions.ACCELERATION, Dimensions.multiply(inverseTime, Dimensions.SPEED));
 
-		assertEquals(Dimensions.ENERGY, Dimension.multiply(Dimensions.FORCE, Dimensions.LENGTH));
+		assertEquals(Dimensions.ENERGY, Dimensions.multiply(Dimensions.FORCE, Dimensions.LENGTH));
 
-		assertEquals(Dimensions.MOMENTUM, Dimension.multiply(Dimensions.MASS, Dimensions.SPEED));
+		assertEquals(Dimensions.MOMENTUM, Dimensions.multiply(Dimensions.MASS, Dimensions.SPEED));
 
-		assertEquals(Dimensions.FORCE, Dimension.multiply(Dimensions.MASS, Dimensions.ACCELERATION));
+		assertEquals(Dimensions.FORCE, Dimensions.multiply(Dimensions.MASS, Dimensions.ACCELERATION));
 	}
 
 	@Test
@@ -102,14 +102,14 @@ class DimensionTest
 	@Test
 	void testDivide()
 	{
-		assertEquals(Dimensions.SPEED, Dimension.divide(Dimensions.ACCELERATION, Dimensions.TIME.invert()));
-		assertEquals(Dimensions.TIME.invert(), Dimension.divide(Dimensions.ACCELERATION, Dimensions.SPEED));
-		assertEquals(Dimensions.TIME, Dimension.divide(Dimensions.SPEED, Dimensions.ACCELERATION));
-		assertEquals(Dimensions.MASS, Dimension.divide(Dimensions.FORCE, Dimensions.ACCELERATION));
-		assertEquals(Dimensions.MASS.invert(), Dimension.divide(Dimensions.ACCELERATION, Dimensions.FORCE));
+		assertEquals(Dimensions.SPEED, Dimensions.divide(Dimensions.ACCELERATION, Dimensions.TIME.invert()));
+		assertEquals(Dimensions.TIME.invert(), Dimensions.divide(Dimensions.ACCELERATION, Dimensions.SPEED));
+		assertEquals(Dimensions.TIME, Dimensions.divide(Dimensions.SPEED, Dimensions.ACCELERATION));
+		assertEquals(Dimensions.MASS, Dimensions.divide(Dimensions.FORCE, Dimensions.ACCELERATION));
+		assertEquals(Dimensions.MASS.invert(), Dimensions.divide(Dimensions.ACCELERATION, Dimensions.FORCE));
 
-		assertEquals(new NullDimension(), Dimension.divide(Dimensions.MASS, Dimensions.MASS));
-		assertEquals(new NullDimension(), Dimension.divide(Dimensions.ACCELERATION, Dimensions.ACCELERATION));
+		assertEquals(NullDimension.INSTANCE, Dimensions.divide(Dimensions.MASS, Dimensions.MASS));
+		assertEquals(NullDimension.INSTANCE, Dimensions.divide(Dimensions.ACCELERATION, Dimensions.ACCELERATION));
 
 	}
 }

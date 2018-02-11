@@ -1,9 +1,6 @@
 package unit;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 public class CompoundUnit extends Unit
 {
@@ -94,8 +91,22 @@ public class CompoundUnit extends Unit
 	}
 
 	@Override
-	public Map<BaseUnit, Integer> getSubUnits()
+	public Map<Unit, Integer> getSubUnits()
 	{
-		return null;
+		Map<Unit,Integer> ret=new TreeMap<>();
+		for(Map.Entry<Unit,Integer> entry:this.units.entrySet())
+		{
+			int multiplier=entry.getValue();
+			for(Map.Entry<Unit,Integer> subUnit:entry.getKey().getSubUnits().entrySet())
+				if(ret.containsKey(subUnit.getKey()))
+					ret.put(subUnit.getKey(),multiplier*subUnit.getValue()+ret.get(subUnit.getKey()));
+				else
+					ret.put(subUnit.getKey(),multiplier*subUnit.getValue());
+		}
+		Set<Unit> units=ret.keySet();
+		for(Unit u:units)
+			if(ret.get(u)==0)
+				ret.remove(u);
+		return ret;
 	}
 }
