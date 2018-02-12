@@ -1,9 +1,9 @@
 package unit;
 
+import com.sun.org.apache.bcel.internal.generic.NEW;
+import jdk.nashorn.internal.scripts.JO;
 
-import com.sun.istack.internal.localization.NullLocalizable;
-
-import java.lang.reflect.Method;
+import javax.xml.stream.FactoryConfigurationError;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.TreeMap;
@@ -39,34 +39,51 @@ public class SiSystem extends UnitSystem
 	public static final SiSystem INSTANCE=new SiSystem();
 
 	static{
+		addPreferredUnit(KILOGRAM);
+		addPreferredUnit(GRAM);
+		addPreferredUnit(METER);
+		addPreferredUnit(SECOND);
+		addPreferredUnit(MINUTE);
+		addPreferredUnit(HOUR);
+		addPreferredUnit(AMPERE);
+		addPreferredUnit(RADIAN);
+		addPreferredUnit(DEGREE);
+
 		TreeMap<Unit,Integer> tempMap=new TreeMap<>();
 
 		tempMap.put(SECOND,-1);
-
 		HERTZ=new CompoundUnit(tempMap,"hertz","hz");
+		addPreferredUnit(HERTZ);
+
 		tempMap.remove(SECOND);
 		tempMap.put(METER,-1);
-
 		DIOPTER=new CompoundUnit(tempMap,"diopter","dpt");
+		addPreferredUnit(DIOPTER);
+
 		tempMap.put(METER,1);
 		tempMap.put(KILOGRAM,1);
 		tempMap.put(SECOND,-2);
 		NEWTON=new CompoundUnit(tempMap);
+		addPreferredUnit(NEWTON);
 
 		tempMap.put(METER,2);
 		JOULE=new CompoundUnit(tempMap,"joule","J");
+		addPreferredUnit(JOULE);
 
 		tempMap.put(SECOND,-3);
 		WATT=new CompoundUnit(tempMap,"watt","W");
+		addPreferredUnit(WATT);
 
 		tempMap.put(SECOND,-2);
 		tempMap.put(METER,-1);
 		PASCAL=new CompoundUnit(tempMap,"pascal","Pa");
+		addPreferredUnit(PASCAL);
 
 		tempMap.clear();
 		tempMap.put(SECOND,1);
 		tempMap.put(AMPERE,1);
 		COULOMB =new CompoundUnit(tempMap,"coulomb","C");
+		addPreferredUnit(COULOMB);
 
 		tempMap.clear();
 		tempMap.put(KILOGRAM,1);
@@ -74,18 +91,23 @@ public class SiSystem extends UnitSystem
 		tempMap.put(SECOND,-3);
 		tempMap.put(AMPERE,-1);
 		VOLT=new CompoundUnit(tempMap,"volt","V");
+		addPreferredUnit(VOLT);
 
 		tempMap.put(AMPERE,-2);
 		OHM=new CompoundUnit(tempMap,"ohm","\u03A9");
+		addPreferredUnit(OHM);
 
 		tempMap.put(SECOND,-2);
 		HENRY=new CompoundUnit(tempMap,"henry","H");
+		addPreferredUnit(HENRY);
 
 		tempMap.put(AMPERE,-1);
 		WEBER=new CompoundUnit(tempMap,"weber","Wb");
+		addPreferredUnit(WEBER);
 
 		tempMap.remove(METER);
 		TESLA=new CompoundUnit(tempMap,"tesla","T");
+		addPreferredUnit(TESLA);
 
 		tempMap.clear();
 		tempMap.put(KILOGRAM,-1);
@@ -93,15 +115,11 @@ public class SiSystem extends UnitSystem
 		tempMap.put(SECOND,4);
 		tempMap.put(AMPERE,2);
 		FARAD=new CompoundUnit(tempMap,"farad","F");
+		addPreferredUnit(FARAD);
 
 		tempMap.put(SECOND,3);
 		SIEMENS=new CompoundUnit(tempMap,"siemens","S");
-
-
-
-
-
-
+		addPreferredUnit(SIEMENS);
 
 	}
 	private static void addPreferredUnit(Unit u)
@@ -128,6 +146,7 @@ public class SiSystem extends UnitSystem
 	@Override
 	public Unit getUnit(Dimension dim)
 	{
+
 		return null;
 	}
 
