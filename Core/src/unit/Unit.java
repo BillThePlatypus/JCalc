@@ -2,6 +2,7 @@ package unit;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public abstract class Unit implements Comparable<Unit>
 {
@@ -63,5 +64,46 @@ public abstract class Unit implements Comparable<Unit>
 	public String toString()
 	{
 		return this.getFullName()+" ("+this.getClass().getName()+")";
+	}
+
+	public Unit multiply(Unit u)
+	{
+		Map<Unit,Integer> units=this.getSubUnits();
+		for(Map.Entry<Unit,Integer> entry:u.getSubUnits().entrySet())
+			if(units.containsKey(entry.getKey()))
+				units.put(entry.getKey(),units.get(entry.getKey())+entry.getValue());
+			else
+				units.put(entry.getKey(),entry.getValue());
+		return Unit.makeUnit(units);
+	}
+
+	public Unit invert()
+	{
+		Map<Unit,Integer> units=this.getSubUnits();
+		Set<Map.Entry<Unit,Integer>> entries=units.entrySet();
+		for(Map.Entry<Unit,Integer> entry:entries)
+			units.put(entry.getKey(),-entry.getValue());
+		return Unit.makeUnit(units);
+	}
+
+	public Unit divide(Unit u)
+	{
+		return this.multiply(u.invert());
+	}
+
+	static Unit makeUnit(Map<Unit,Integer> units)
+	{
+		Set<Map.Entry<Unit,Integer>> entries=units.entrySet();
+		for(Map.Entry<Unit,Integer> entry:entries)
+			if(entry.getValue()==0)
+				units.remove(entry.getKey());
+		if(entries.size()==1)
+			for(Map.Entry<Unit,Integer> entry:entries) {
+				if (entry.getValue() == 1)
+					return entry.getKey();
+				if(entry.getValue() == 0)
+					return NullUnit.INSTANCE;
+			}
+		return new CompoundUnit(units);
 	}
 }

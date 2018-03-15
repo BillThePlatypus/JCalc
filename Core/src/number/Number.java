@@ -1,8 +1,6 @@
 package number;
 
-import unit.Dimensions;
 import unit.Unit;
-import unit.Units;
 
 public class Number
 {
@@ -37,11 +35,11 @@ public class Number
 	}
 	public static Number multiply(Number n1, Number n2)
 	{
-		return new Number(n1.value*n2.value, Units.multiply(n1.getUnit(),n2.getUnit()));
+		return new Number(n1.value*n2.value, n1.getUnit().multiply(n2.getUnit()));
 	}
 	public Number invert()
 	{
-		return new Number(1/this.value,Units.invert(this.getUnit()));
+		return new Number(1/this.value,this.getUnit()).invert();
 	}
 	public static Number divide(Number n1, Number n2)
 	{

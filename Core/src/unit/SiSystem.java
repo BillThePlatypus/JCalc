@@ -138,15 +138,10 @@ public class SiSystem extends UnitSystem
 	}
 
 	@Override
-	public Unit getUnit(Dimension dim, double siValue)
-	{
-		return null;
-	}
-
-	@Override
 	public Unit getUnit(Dimension dim)
 	{
-
+		if(SiSystem.preferredUnits.containsKey(dim))
+			return SiSystem.preferredUnits.get(dim).get(0);
 		return null;
 	}
 
